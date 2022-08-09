@@ -10,7 +10,7 @@ HVector create_vector_with_capacity(size_t cap) {
 	HVector hvec = (HVector)malloc(sizeof(Vector));
 
 	if (!hvec) {
-		fprintf(stderr, "bellek yetersiz");
+		fprintf(stderr, "out of memory");
 		return hvec;
 	}
 
@@ -19,7 +19,7 @@ HVector create_vector_with_capacity(size_t cap) {
 	hvec->mp = (DATATYPE*)malloc(cap * sizeof(DATATYPE));
 	if (!hvec->mp) {
 		free(hvec);
-		fprintf(stderr, "bellek yetersiz");
+		fprintf(stderr, "out of memory");
 		return NULL;
 	}
 
@@ -127,11 +127,8 @@ bool erase_val(HVector hvec, DATATYPE val) {
 }
 
 bool erase_val_all(HVector hvec, DATATYPE val) {
-	int flag = 0;
-	int flag_ret = 0;
 	int cnt = 0;
 
-	//while (flag = !flag ? flag_ret : flag, flag_ret = erase_val(hvec, val))
 	while (erase_val(hvec, val))
 		cnt++;
 
